@@ -8,6 +8,7 @@ import {getAccessToken} from 'features/auth/redux/selectors';
 import {SignOutButton} from 'features/auth/components/SignOutButton';
 import {usePushNotificationsToken} from 'features/push/hooks/usePushNotificationsToken';
 import {sendPushToken} from 'features/push/redux/pushSlice';
+import {OnboardingScreen} from 'screens/OnboardingScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,13 @@ export const RootStack = (): JSX.Element => {
     <Stack.Navigator>
       {isSignedIn ? (
         <>
+          <Stack.Screen
+            name={Routes.Onboarding}
+            component={OnboardingScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
           <Stack.Screen
             name={Routes.Home}
             component={HomeScreen}
