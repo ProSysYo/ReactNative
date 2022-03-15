@@ -11,7 +11,7 @@ import {
 import {fValue, spacing} from 'core/utils/ui';
 import {Controller, useForm} from 'react-hook-form';
 import {useAppDispatch} from 'reduxStore/hooks';
-import {signIn} from 'features/auth/redux/authSlice';
+import {signIn, signInFake} from 'features/auth/redux/authSlice';
 import {Toast} from 'core/utils/toast';
 
 type FormData = {
@@ -29,8 +29,8 @@ export const SignInScreen = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const onSubmit = async (data: FormData) => {
-    const resultAction = await dispatch(signIn(data));
-
+    //const resultAction = await dispatch(signIn(data));
+    const resultAction = await dispatch(signInFake(data));
     if (signIn.rejected.match(resultAction)) {
       Toast.error({
         title: 'Authentication Error',

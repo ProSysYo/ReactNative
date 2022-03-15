@@ -9,6 +9,13 @@ class AuthRepository {
     );
     return response.data;
   };
+
+  public signInFake = async (data: SignInRequestData) => {
+    if (data) {
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+    return {accessToken: 'anytoken'};
+  };
 }
 
 export const authRepository = Object.freeze(new AuthRepository());

@@ -9,6 +9,11 @@ export const signIn = createAsyncThunk(
   async (params: SignInRequestData) => authRepository.signIn(params),
 );
 
+export const signInFake = createAsyncThunk(
+  `${name}/signInFake`,
+  async (params: SignInRequestData) => authRepository.signInFake(params),
+);
+
 type State = {
   accessToken: string | null;
 };
@@ -27,6 +32,9 @@ const authSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(signIn.fulfilled, (state, action) => {
+      state.accessToken = action.payload.accessToken;
+    });
+    builder.addCase(signInFake.fulfilled, (state, action) => {
       state.accessToken = action.payload.accessToken;
     });
   },
