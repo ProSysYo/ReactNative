@@ -28,7 +28,7 @@ export const Footer: React.FC<Props> = props => {
         ))}
       </View>
 
-      <View style={{marginBottom: 20}}>
+      <View>
         {currentSlideIndex === slides.length - 1 ? (
           <View style={{height: 50}}>
             <TouchableOpacity style={styles.btn} onPress={navigateTo}>
@@ -63,8 +63,8 @@ export const Footer: React.FC<Props> = props => {
 
 const styles = StyleSheet.create({
   indicator: {
-    height: 2.5,
-    width: 10,
+    height: 5,
+    width: 5,
     backgroundColor: 'grey',
     marginHorizontal: 3,
     borderRadius: 2,
@@ -78,16 +78,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   footerContainer: {
-    height: SIZES.height * 0.2,
+    height: SIZES.height * 0.1,
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    marginBottom: 10,
+    marginBottom: 20,
     borderColor: 'black',
     borderwidth: 1,
   },
   indicatorContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: '-35%',
+    marginTop: '-30%',
   },
 });

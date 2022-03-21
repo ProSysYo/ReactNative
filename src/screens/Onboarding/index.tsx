@@ -54,12 +54,12 @@ export const OnboardingScreen: React.FC = () => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.indigo}}>
       <StatusBar backgroundColor={COLORS.indigo} />
-      <Header />
+      <Header skip={skip} />
       <FlatList
         ref={ref}
         onMomentumScrollEnd={updateCurrentSlideIndex}
-        contentContainerStyle={{height: SIZES.height * 0.8}}
         showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         horizontal
         data={slides}
         pagingEnabled

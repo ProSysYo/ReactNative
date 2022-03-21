@@ -5,12 +5,16 @@ import {SlideItem} from './types';
 
 export const Slide: React.FC<{item: SlideItem}> = ({item}) => {
   return (
-    <View style={{alignItems: 'center'}}>
+    <View style={{alignItems: 'center', justifyContent: 'space-between'}}>
       <Image
         source={item?.image}
-        style={{height: '70%', width: SIZES.width, resizeMode: 'contain'}}
+        style={{
+          height: '60%',
+          width: SIZES.width,
+          resizeMode: 'contain',
+        }}
       />
-      <View style={{marginTop: 20}}>
+      <View>
         <Text style={styles.title}>{item?.title}</Text>
         <Text style={styles.subtitle}>{item?.subtitle}</Text>
       </View>
@@ -23,16 +27,15 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontSize: 22,
     fontWeight: 'bold',
-    marginTop: 20,
     textAlign: 'center',
+    marginTop: 20,
   },
   subtitle: {
     color: COLORS.white,
     fontSize: 13,
-    marginTop: 10,
     maxWidth: SIZES.width,
-    height: 300,
     textAlign: 'center',
     justifyContent: 'center',
+    marginTop: 20,
   },
 });

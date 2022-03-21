@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#000',
     paddingHorizontal: spacing(1),
+    paddingVertical: spacing(2),
     backgroundColor: '#fff',
   },
   button: {
