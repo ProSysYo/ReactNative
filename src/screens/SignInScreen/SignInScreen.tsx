@@ -1,15 +1,12 @@
 import React from 'react';
 import {
-  Keyboard,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import {fValue, spacing} from 'core/utils/ui';
-import {Controller, useForm} from 'react-hook-form';
 import {useAppDispatch} from 'reduxStore/hooks';
 import {signIn, signInFake} from 'features/auth/redux/authSlice';
 import {Toast} from 'core/utils/toast';
@@ -20,12 +17,6 @@ type FormData = {
 };
 
 export const SignInScreen = (): JSX.Element => {
-  const {formState, control, handleSubmit} = useForm<FormData>({
-    mode: 'onChange',
-  });
-
-  const disabled = !formState.isValid;
-
   const dispatch = useAppDispatch();
 
   const onSubmit = async (data: FormData) => {
@@ -33,49 +24,16 @@ export const SignInScreen = (): JSX.Element => {
     const resultAction = await dispatch(signInFake(data));
     if (signIn.rejected.match(resultAction)) {
       Toast.error({
-        title: 'Authentication Error',
+        title: 'Authentication Error.',
         message: "Connection to the server can't be made",
       });
     }
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback>
       <View style={styles.root}>
-        <Controller
-          control={control}
-          defaultValue=""
-          name="username"
-          rules={{required: true}}
-          render={({field: {value, onChange, onBlur}}) => (
-            <TextInput
-              style={styles.input}
-              placeholder="Username"
-              value={value}
-              onBlur={onBlur}
-              onChangeText={onChange}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          defaultValue=""
-          name="password"
-          rules={{required: true}}
-          render={({field: {value, onChange, onBlur}}) => (
-            <TextInput
-              style={styles.input}
-              placeholder="Password"
-              value={value}
-              onBlur={onBlur}
-              onChangeText={onChange}
-            />
-          )}
-        />
-        <TouchableOpacity
-          style={[styles.button, disabled && styles.disabledButton]}
-          onPress={handleSubmit(onSubmit)}
-          disabled={disabled}>
+        <TouchableOpacity style={[styles.button]} onPress={() => onSubmit}>
           <Text style={styles.buttonText}>Sign In</Text>
         </TouchableOpacity>
       </View>
@@ -88,15 +46,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     padding: spacing(2),
-  },
-  input: {
-    marginBottom: spacing(2),
-    borderRadius: spacing(0.5),
-    borderWidth: 1,
-    borderColor: '#000',
-    paddingHorizontal: spacing(1),
-    paddingVertical: spacing(2),
-    backgroundColor: '#fff',
   },
   button: {
     borderRadius: spacing(0.5),
