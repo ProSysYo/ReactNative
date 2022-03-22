@@ -24,7 +24,7 @@ export const SignInScreen = (): JSX.Element => {
     const resultAction = await dispatch(signInFake(data));
     if (signIn.rejected.match(resultAction)) {
       Toast.error({
-        title: 'Authentication Error',
+        title: 'Authentication Error.',
         message: "Connection to the server can't be made",
       });
     }
